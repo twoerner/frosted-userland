@@ -24,20 +24,25 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-int main(int argc, char *argv[])
+void
+main(int argc, char *argv[])
 {
-    int ledFd;
-    uint8_t val = '0';
+	int ledFd;
+	uint8_t val = '0';
 
-    ledFd = open("/dev/led0", O_RDWR, 0);
+	ledFd = open("/dev/led0", O_RDWR, 0);
 
-    if (ledFd >= 0) {
-        while (1) {
-        	write(ledFd, &val, 1);
-        	val ^= 1;
-                usleep(200000);
-        }
-    } else {
-        while(1) { sleep(1); } /* GPIO unavailable, just sleep. */
-    }
+	if (ledFd >= 0) {
+		while (1) {
+			write(ledFd, &val, 1);
+			val ^= 1;
+			usleep(200000);
+		}
+	}
+	else {
+		/* GPIO unavailable, just sleep. */
+		while(1) {
+			sleep(1);
+		}
+	}
 }
