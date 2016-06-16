@@ -23,26 +23,12 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include <signal.h>
-
-static int received_signal = 0;
-
-void usr1_hdlr(int signo)
-{
-    //sleep(1);
-    received_signal = signo;
-
-}
 
 int main(int argc, char *argv[])
 {
     int pid;
     int led[4];
     int i, j;
-    struct sigaction act = {};
-    act.sa_handler = usr1_hdlr;
-
-    sigaction(SIGUSR1, &act, NULL); 
 
 # define LED0 "/dev/led0"
 # define LED1 "/dev/led1"
