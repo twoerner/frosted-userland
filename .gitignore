@@ -39,3 +39,4 @@ kconfig/.config
 apps.img
 gdb
 out
+tools/xipfstool

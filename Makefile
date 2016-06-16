@@ -19,7 +19,7 @@ endif
 
 
 #Applications selection
-DIR-y+=lib binutils hw-utils netutils games
+DIR-y+=lib binutils hw-utils netutils games tools
 
 
 # COMPILER FLAGS -- Target CPU
@@ -35,13 +35,15 @@ CFLAGS+=-ggdb
 # LINKER FLAGS
 LDFLAGS+=-fPIC -mlong-calls -fno-common -Wl,-elf2flt -lgloss
 
-all: apps.img
+all: tools/xipfstool apps.img
 	cp apps.img $(FROSTED)/
 
+tools/xipfstool: tools/xipfs.c
+	@make -C tools
 
 apps.img: $(APPS-y) $(DIR-y) 
 	(mv out/*.gdb gdb/ 2>/dev/null) || true
-	$(FROSTED)/tools/xipfstool $@ $(APPS-y) out/*
+	tools/xipfstool $@ $(APPS-y) out/*
 
 binutils: FORCE
 	mkdir -p out
