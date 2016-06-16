@@ -31,7 +31,6 @@ CFLAGS+=-nostartfiles
 CFLAGS+=-fPIC -mlong-calls -fno-common -msingle-pic-base -mno-pic-data-is-text-relative -Wstack-usage=1024
 # Debugging
 CFLAGS+=-ggdb
-CFLAGS+=-I../lib/include
 
 # LINKER FLAGS
 LDFLAGS+=-fPIC -mlong-calls -fno-common -Wl,-elf2flt -lgloss
