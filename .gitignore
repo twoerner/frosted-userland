@@ -34,3 +34,8 @@
 kconfig/.depend
 .config
 kconfig/.config
+
+# output
+apps.img
+gdb
+out
